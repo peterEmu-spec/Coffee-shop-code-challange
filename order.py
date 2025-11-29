@@ -7,13 +7,21 @@ class Order:
         self.coffee=coffee
         self.price=price
 
+
+        self._customer = None
+        self._coffee = None
+        self._price = None
+
+        Order.all_orders.append(self)
+        
+
     @property
     def customer(self):
         return self._customer
     
     @customer.setter
     def customer(self,customer):
-        if not isinstance (customer in Customer):
+        if not isinstance (customer , Customer):
             raise ValueError("customer must be an instance of Customer.")
         self._customer=customer
 
@@ -38,6 +46,7 @@ class Order:
             raise ValueError("price must be a number")
         if price < 1.0 or price >10.0:
             raise ValueError("price must be between 1.0 and 10.0.")
+        self._price=price
 
 
 
